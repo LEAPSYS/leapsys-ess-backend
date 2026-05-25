@@ -4,7 +4,7 @@ app_publisher = "LEAPSYS"
 app_description = "Employee Self Service and Service App for LEAPSYS"
 app_email = "info@leapsys.net"
 app_license = "mit"
-required_apps = ["frappe>=15.0.0,<17.0.0"]
+required_apps = ["frappe"]
 
 # Includes in <head>
 # ------------------
