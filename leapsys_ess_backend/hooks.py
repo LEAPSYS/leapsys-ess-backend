@@ -10,8 +10,8 @@ required_apps = ["frappe>=15.0.0,<17.0.0"]
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/leapsys_ess_backend/css/leapsys_ess_backend.css"
-# app_include_js = "/assets/leapsys_ess_backend/js/leapsys_ess_backend.js"
+# app_include_css = "/assets/leapsys_ess_backend/css/leapsys_ess_backend.bundle.css"
+app_include_js = "/assets/leapsys_ess_backend/js/leapsys_ess_backend.bundle.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/leapsys_ess_backend/css/leapsys_ess_backend.css"
