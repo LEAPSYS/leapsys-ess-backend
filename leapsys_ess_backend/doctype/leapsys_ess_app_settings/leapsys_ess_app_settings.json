@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "creation": "2026-05-25 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "branding_section",
+  "primary_color",
+  "secondary_color",
+  "app_logo",
+  "company_name",
+  "feature_toggles_section",
+  "enable_geofencing",
+  "enable_offline_mode",
+  "enable_service_module",
+  "enable_sales_module",
+  "enable_chatbot"
+ ],
+ "fields": [
+  {
+   "fieldname": "branding_section",
+   "fieldtype": "Section Break",
+   "label": "Branding"
+  },
+  {
+   "fieldname": "primary_color",
+   "fieldtype": "Color",
+   "label": "Primary Color"
+  },
+  {
+   "fieldname": "secondary_color",
+   "fieldtype": "Color",
+   "label": "Secondary Color"
+  },
+  {
+   "fieldname": "app_logo",
+   "fieldtype": "Attach Image",
+   "label": "App Logo"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "fieldname": "feature_toggles_section",
+   "fieldtype": "Section Break",
+   "label": "Feature Toggles"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_geofencing",
+   "fieldtype": "Check",
+   "label": "Enable Geofencing"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_offline_mode",
+   "fieldtype": "Check",
+   "label": "Enable Offline Mode"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_service_module",
+   "fieldtype": "Check",
+   "label": "Enable Service Module"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_sales_module",
+   "fieldtype": "Check",
+   "label": "Enable Sales Module"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_chatbot",
+   "fieldtype": "Check",
+   "label": "Enable Chatbot"
+  }
+ ],
+ "issingle": 1,
+ "custom": 0,
+ "links": [],
+ "modified": "2026-05-25 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Leapsys Ess Backend",
+ "name": "Leapsys ESS App Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
