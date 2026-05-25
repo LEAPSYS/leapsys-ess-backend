@@ -6,7 +6,7 @@ authors = [
     { name = "LEAPSYS", email = "info@leapsys.net"}
 ]
 dependencies = [
-    "frappe~=15.0.0"
+    # Removed frappe dependency to prevent uv from crashing on pypika URL
 ]
 
 [build-system]
