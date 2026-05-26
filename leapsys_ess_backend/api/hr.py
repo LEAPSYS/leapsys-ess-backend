@@ -27,6 +27,7 @@ def submit_expense_claim(expense_type, amount, date, description):
             "employee": employee,
             "company": employee_doc.company,
             "posting_date": date or frappe.utils.today(),
+            "exchange_rate": 1,
             "expenses": [{
                 "expense_type": expense_type,
                 "amount": amount,
