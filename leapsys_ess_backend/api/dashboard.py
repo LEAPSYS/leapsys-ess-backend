@@ -36,8 +36,9 @@ def get_dashboard_summary():
         
         # Expenses (unpaid/unapproved)
         # Using Expense Claim
-        exp = frappe.db.get_value("Expense Claim", {"employee": employee, "docstatus": 0}, "sum(total_claimed_amount)") or 0
-        summary["expenses"] = f"₹{exp}"
+        exp = frappe.db.sql("select sum(total_claimed_amount) as total from `tabExpense Claim` where employee=%s and docstatus=0", employee, as_dict=True)
+        exp_total = exp[0].total if exp and exp[0].total else 0
+        summary["expenses"] = f"₹{exp_total}"
         
         # Salary Slips (latest)
         slip = frappe.get_all("Salary Slip", filters={"employee": employee, "docstatus": 1}, order_by="start_date desc", limit=1, fields=["month"])
