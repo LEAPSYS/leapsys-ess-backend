@@ -19,7 +19,7 @@ def get_dashboard_summary():
         # Leaves (balance)
         # simplistic approach, real approach is more complex
         leaves = frappe.db.sql("""
-            select sum(leaves_allocated) - sum(leaves_taken) as bal
+            select sum(total_leaves_allocated) - sum(leaves_taken) as bal
             from `tabLeave Allocation`
             where employee = %s and from_date <= %s and to_date >= %s and docstatus = 1
         """, (employee, today(), today()), as_dict=True)
