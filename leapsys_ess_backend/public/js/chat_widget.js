@@ -1,7 +1,4 @@
 (function() {
-    // Only load if logged in
-    if (!frappe.session || frappe.session.user === "Guest") return;
-
     let chatState = {
         isOpen: false,
         activeRoom: null,
@@ -251,6 +248,19 @@
         }, 5000);
     }
 
-    // Initialize after a short delay to let Frappe desk load
-    setTimeout(buildWidget, 1000);
+    // Initialize only when Frappe Desk is ready
+    if (typeof $(document) !== 'undefined') {
+        $(document).on('app_ready', function() {
+            if (!document.getElementById('leapsys-chat-widget') && frappe.session && frappe.session.user !== "Guest") {
+                buildWidget();
+            }
+        });
+    }
+    
+    // Fallback if already loaded
+    setTimeout(() => {
+        if (!document.getElementById('leapsys-chat-widget') && frappe && frappe.session && frappe.session.user !== "Guest") {
+            buildWidget();
+        }
+    }, 2000);
 })();
