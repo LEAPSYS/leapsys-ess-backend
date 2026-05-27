@@ -64,11 +64,12 @@ def get_leave_types():
         return {"success": False, "error": str(e)}
 
 @frappe.whitelist()
-def create_leave_application(leave_type, from_date, to_date, reason):
+def create_leave_application(leave_type, from_date, to_date, reason, half_day=0, half_day_date=None):
     try:
         employee = get_current_employee()
         employee_doc = frappe.get_doc("Employee", employee)
-        leave = frappe.get_doc({
+        
+        doc_args = {
             "doctype": "Leave Application",
             "employee": employee,
             "company": employee_doc.company,
@@ -76,12 +77,19 @@ def create_leave_application(leave_type, from_date, to_date, reason):
             "from_date": from_date,
             "to_date": to_date,
             "description": reason,
-            "status": "Open"
-        })
+            "status": "Open",
+            "half_day": int(half_day)
+        }
+        
+        if int(half_day) == 1:
+            doc_args["half_day_date"] = half_day_date or from_date
+            
+        leave = frappe.get_doc(doc_args)
         leave.insert(ignore_permissions=True)
         return {"success": True, "message": "Leave Application submitted successfully", "name": leave.name}
     except Exception as e:
         return {"success": False, "error": str(e)}
+
 
 @frappe.whitelist()
 def get_my_expenses():
