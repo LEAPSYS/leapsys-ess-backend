@@ -69,7 +69,7 @@ def get_dashboard_summary():
     summary["directory"] = f"{employees} Emp"
     
     # Todos
-    todos = frappe.db.count("ToDo", {"owner": frappe.session.user, "status": "Open"})
+    todos = frappe.db.count("ToDo", {"allocated_to": frappe.session.user, "status": "Open"})
     summary["todos"] = f"{todos} Pending"
     
     frappe.local.response["message"] = {
