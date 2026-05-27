@@ -41,8 +41,8 @@ def get_dashboard_summary():
         summary["expenses"] = f"₹{exp_total}"
         
         # Salary Slips (latest)
-        slip = frappe.get_all("Salary Slip", filters={"employee": employee, "docstatus": 1}, order_by="start_date desc", limit=1, fields=["month"])
-        summary["salary_slips"] = slip[0].month if slip else "None"
+        slip = frappe.get_all("Salary Slip", filters={"employee": employee, "docstatus": 1}, order_by="start_date desc", limit=1, fields=["start_date"])
+        summary["salary_slips"] = slip[0].start_date.strftime("%b %Y") if slip and slip[0].start_date else "None"
         
         # Visits (today)
         visits = frappe.db.count("Maintenance Visit", {"maintenance_date": today(), "docstatus": ("<", 2)})
