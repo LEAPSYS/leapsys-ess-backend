@@ -18,13 +18,21 @@ def get_dashboard_summary():
         
         # Leaves (balance)
         # simplistic approach, real approach is more complex
-        leaves = frappe.db.sql("""
-            select sum(total_leaves_allocated) - sum(leaves_taken) as bal
+        alloc = frappe.db.sql("""
+            select sum(total_leaves_allocated) as total
             from `tabLeave Allocation`
             where employee = %s and from_date <= %s and to_date >= %s and docstatus = 1
         """, (employee, today(), today()), as_dict=True)
-        bal = leaves[0].bal if leaves and leaves[0].bal else 0
-        summary["leaves"] = f"{bal} Bal"
+        allocated = alloc[0].total if alloc and alloc[0].total else 0
+        
+        taken_sql = frappe.db.sql("""
+            select sum(total_leave_days) as taken
+            from `tabLeave Application`
+            where employee = %s and from_date <= %s and docstatus = 1
+        """, (employee, today()), as_dict=True)
+        taken = taken_sql[0].taken if taken_sql and taken_sql[0].taken else 0
+        
+        summary["leaves"] = f"{max(0, allocated - taken)} Bal"
         
         # Expenses (unpaid/unapproved)
         # Using Expense Claim
