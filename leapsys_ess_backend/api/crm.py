@@ -1,5 +1,4 @@
 import frappe
-from leapsys_ess_backend.api.auth import get_current_employee
 import json
 
 @frappe.whitelist()
